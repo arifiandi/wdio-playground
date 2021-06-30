@@ -5,5 +5,7 @@ requirement:
 - node 14
 - chrome 91.0
 
-[*]clone this repository `git clone git@github.com:arifiandi/wdio-playground.git`
-[*]`npm install` 
+```
+- clone this repository `git clone git@github.com:arifiandi/wdio-playground.git`
+- `npm install` 
+```

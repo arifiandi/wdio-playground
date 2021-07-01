@@ -6,7 +6,7 @@ Scenario: Go to certain website
 
 @training2
 Scenario: Fill form
-    Given go to form page
+    Given go to "https://demoqa.com/text-box"
     When fill username
     And fill enail
     And set current address

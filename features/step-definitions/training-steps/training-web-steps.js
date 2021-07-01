@@ -7,9 +7,9 @@ Given('go to website', function () {
   driver.pause(5000)
 });
 
-Given('go to form page', function () {
+Given('go to {string}', function (web) {
   // Write code here that turns the phrase above into concrete actions
-  browser.url('https://demoqa.com/text-box')
+  browser.url(web)
 });
 
 When('fill username', function () {

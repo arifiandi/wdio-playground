@@ -12,3 +12,8 @@ Scenario: Fill form
     And set current address
     And set permanent address
     Then click submit button
+
+@training3
+Scenario:
+    Given go to "https://demoqa.com/radio-button"
+    Then click radio button

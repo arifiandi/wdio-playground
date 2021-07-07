@@ -41,3 +41,9 @@ Then('click submit button', function () {
   const submitButton = $('#submit')
   submitButton.click()
 });
+
+Then ('click radio button', function() {
+  // called using multiple elements using index
+  const yesRadioButton = $$('.custom-control-label')[0]
+  yesRadioButton.click()
+})

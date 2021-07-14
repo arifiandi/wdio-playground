@@ -13,3 +13,9 @@ Scenario: fill simple form
     And set current address
     And set fixed address
     Then click submit button
+
+@training3
+Scenario: fill simple form
+    Given go to "https://demoqa.com/upload-download"
+    When upload document
+    Then file uploaded

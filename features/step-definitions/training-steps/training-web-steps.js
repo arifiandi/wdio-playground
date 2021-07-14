@@ -1,25 +1,14 @@
-const {Given, When, Then} = require('@cucumber/cucumber')
+require('app-module-path').addPath(process.cwd());
 
-// Given('go to website', function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     // return 'pending';
-//     browser.url('http://www.google.com')
-//     driver.pause(5000)
-//   });
+const {Given, When, Then} = require('@cucumber/cucumber')
+const { expect } = require('chai')
+const uploadPage = require('features/pageobjects/upload-page')
 
   Given('go to {string}', function (web) {
-    // Write code here that turns the phrase above into concrete actions
-    // return 'pending';
     browser.url(web)
   });
 
-  // Given('go to form page', function () {
-  //   browser.url('https://demoqa.com/text-box')
-  // });
-
   When('fill username', function () {
-    // Write code here that turns the phrase above into concrete actions
-    // return 'pending';
     const fullName = $('#userName')
     fullName.setValue('Ridwan Arifiandi')
     driver.pause(5000)
@@ -51,5 +40,13 @@ const {Given, When, Then} = require('@cucumber/cucumber')
     if(string !== page.status.getText()){
       link.click()
     }
-    
+  });
+
+  When('upload document', function () {
+    uploadPage.uploadFile()
+    driver.pause(5000)
+  });  
+
+  Then('file uploaded', function () {
+    expect(uploadPage.uploadedFilePath).to.exist
   });

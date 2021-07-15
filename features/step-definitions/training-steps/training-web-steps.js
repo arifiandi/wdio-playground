@@ -1,8 +1,8 @@
 const { Given, Then, When } = require('@cucumber/cucumber');
 const { expect } = require('chai');
+const textboxPage = require('../../pageobjects/textbox');
 const uploadPage = require('../../pageobjects/upload.page');
 // const path = require('app-module-path').addPath(process.cwd());
-
 
 Given('go to website', function () {
   // Write code here that turns the phrase above into concrete actions
@@ -20,32 +20,34 @@ Given('go to {string}', function (web) {
 
 When('fill username', function () {
   // Write code here that turns the phrase above into concrete actions
-  const fullName = $('#userName')
-  fullName.setValue('Joycelind')
+  textboxPage.fullNameField.setValue('Joycelind')
 });
 
-When('fill enail', function () {
+// add assertion
+// Then('username is filled', function() {
+
+// })
+
+When('fill email', function () {
   // Write code here that turns the phrase above into concrete actions
-  const email = $('#userEmail')
-  email.setValue('joy@test.com')
+  textboxPage.emailField.setValue('joy@test.com')
 });
 
 When('set current address', function () {
   // Write code here that turns the phrase above into concrete actions
-  const currentAddress = $('#currentAddress')
-  currentAddress.setValue('Plaza Bank Index')
+  textboxPage.currentAddressField.setValue('Plaza Bank Index')
 });
 
 When('set permanent address', function () {
   // Write code here that turns the phrase above into concrete actions
-  const permanentAddress = $('#permanentAddress')
-  permanentAddress.setValue('Pantai Indah Kapuk')
+  textboxPage.permanentAddressField.setValue('Pantai Indah Kapuk')
 });
 
 Then('click submit button', function () {
   // Write code here that turns the phrase above into concrete actions
-  const submitButton = $('#submit')
-  submitButton.click()
+  textboxPage.submitButton.scrollIntoView()
+  textboxPage.submitButton.click()
+  driver.pause(5000)
 });
 
 // Radio Button
@@ -64,4 +66,5 @@ Then ('upload document', function() {
 Then ('file uploaded', function() {
   // using chai
   expect(uploadPage.uploadFilePath).to.exist
+  expect(uploadPage.uploadFilePath.getText()).to.include('image.png')
 })

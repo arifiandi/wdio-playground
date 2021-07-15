@@ -8,7 +8,7 @@ Scenario: Go to certain website
 Scenario: Fill form
     Given go to "https://demoqa.com/text-box"
     When fill username
-    And fill enail
+    And fill email
     And set current address
     And set permanent address
     Then click submit button

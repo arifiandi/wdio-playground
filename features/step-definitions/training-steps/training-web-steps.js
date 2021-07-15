@@ -1,7 +1,7 @@
 const { Given, Then, When } = require('@cucumber/cucumber');
 const { expect } = require('chai');
 const uploadPage = require('../../pageobjects/upload.page');
-const path = require('app-module-path').addPath(process.cwd());
+// const path = require('app-module-path').addPath(process.cwd());
 
 
 Given('go to website', function () {

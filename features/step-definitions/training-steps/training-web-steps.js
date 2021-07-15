@@ -1,4 +1,8 @@
-const { Given, Then, When } = require('@cucumber/cucumber')
+const { Given, Then, When } = require('@cucumber/cucumber');
+const { expect } = require('chai');
+const uploadPage = require('../../pageobjects/upload.page');
+const path = require('app-module-path').addPath(process.cwd());
+
 
 Given('go to website', function () {
   // Write code here that turns the phrase above into concrete actions
@@ -11,6 +15,8 @@ Given('go to {string}', function (web) {
   // Write code here that turns the phrase above into concrete actions
   browser.url(web)
 });
+
+// Fill form
 
 When('fill username', function () {
   // Write code here that turns the phrase above into concrete actions
@@ -42,8 +48,20 @@ Then('click submit button', function () {
   submitButton.click()
 });
 
+// Radio Button
 Then ('click radio button', function() {
   // called using multiple elements using index
   const yesRadioButton = $$('.custom-control-label')[0]
   yesRadioButton.click()
+})
+
+// Upload Document
+Then ('upload document', function() {
+  uploadPage.uploadFile()
+  driver.pause(5000)
+})
+
+Then ('file uploaded', function() {
+  // using chai
+  expect(uploadPage.uploadFilePath).to.exist
 })

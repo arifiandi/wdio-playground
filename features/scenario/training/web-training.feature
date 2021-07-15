@@ -14,6 +14,12 @@ Scenario: Fill form
     Then click submit button
 
 @training3
-Scenario:
+Scenario: Radio Button
     Given go to "https://demoqa.com/radio-button"
     Then click radio button
+
+@training4
+Scenario: Upload File
+    Given go to "https://demoqa.com/upload-download"
+    Then upload document
+    Then file uploaded

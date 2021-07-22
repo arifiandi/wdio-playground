@@ -3,40 +3,35 @@ require('app-module-path').addPath(process.cwd());
 const {Given, When, Then} = require('@cucumber/cucumber')
 const { expect } = require('chai')
 const uploadPage = require('features/pageobjects/upload-page')
+const textBoxPage = require('features/pageobjects/text-box')
 
   Given('go to {string}', function (web) {
     browser.url(web)
   });
 
   When('fill username', function () {
-    const fullName = $('#userName')
-    fullName.setValue('Ridwan Arifiandi')
-    driver.pause(5000)
-
+    textBoxPage.fullName.setValue('Ridwan Arifiandi')
   });
 
   When('fill email', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    textBoxPage.emailField.setValue('emailku@gmail.com')
   });
 
   When('set current address', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    textBoxPage.currentAddress.setValue('RT 3 RW5 jl.In aja dulu')
   });
 
   When('set fixed address', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    textBoxPage.permanentAddress.setValue('RT 3 RW5 jl.In aja dulu')
   });
 
   Then('click submit button', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    textBoxPage.submitBtn.scrollIntoView()
+    textBoxPage.submitBtn.click()
+    browser.pause(5000);
   });
 
   When('set status to {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
     if(string !== page.status.getText()){
       link.click()
     }
@@ -49,4 +44,5 @@ const uploadPage = require('features/pageobjects/upload-page')
 
   Then('file uploaded', function () {
     expect(uploadPage.uploadedFilePath).to.exist
+    expect(uploadPage.uploadedFilePath.getText()).to.include('test.jpg')
   });

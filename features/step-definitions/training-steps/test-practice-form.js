@@ -100,6 +100,8 @@ When ('Checking the value of table', function() {
     expect(practiceForm.studentbirth.getText()).to.include(`${datasets.dateBirth}`)
     expect(practiceForm.studentSubject.getText()).to.include(`${datasets.subjects}`)
     expect(practiceForm.studentHobbie.getText()).to.include(`${datasets.hobbies}`)
+    expect(practiceForm.studentImage.getText()).to.include(`${datasets.pathImage}`)
+    expect(practiceForm.studentAddress.getText()).to.include(`${datasets.address}`)
     expect(practiceForm.studentStateCity.getText()).to.include(`${datasets.state} ${datasets.city}`)
     expect(practiceForm.closeBtn).to.exist
 })

@@ -39,16 +39,16 @@ class practiceForm {
     get submitBtn() {return $('#submit')}
     get headerTable () {return $('.modal-header')}
     get tableAssert() {return $('.table')}
-    get studentName() {return $('.table').$('<tbody>').$$('tr')[0].$(`td=${datasets.firstName} ${datasets.lastName}`)}
-    get studentEmail() {return $('.table').$('<tbody>').$$('tr')[1].$(`td=${datasets.email}`)}
-    get studentGenders() {return $('.table').$('<tbody>').$$('tr')[2].$(`td=${datasets.gender}`)}
-    get studentNumber() {return $('.table').$('<tbody>').$$('tr')[3].$(`td=${datasets.mobileNumber}`)}
-    get studentbirth() {return $('.table').$('<tbody>').$$('tr')[4].$(`td=${datasets.dateBirth}`)}
-    get studentSubject() {return $('.table').$('<tbody>').$$('tr')[5].$(`td=${datasets.subjects}`)}
-    get studentHobbie() {return $('.table').$('<tbody>').$$('tr')[6].$(`td=${datasets.hobbies}`)}
-    get studentImage() {return $('.table').$('<tbody>').$$('tr')[7].$(`td=${datasets.pathImage}`)}
-    get studentAddress() {return $('.table').$('<tbody>').$$('tr')[8].$(`td=${datasets.address}`)}
-    get studentStateCity() {return $('.table').$('<tbody>').$$('tr')[9].$(`td=${datasets.state} ${datasets.city}`)}
+    get studentName() {return $('.table').$('<tbody>').$$('tr')[0].$$(`td`)[1]}
+    get studentEmail() {return $('.table').$('<tbody>').$$('tr')[1].$$(`td`)[1]}
+    get studentGenders() {return $('.table').$('<tbody>').$$('tr')[2].$$(`td`)[1]}
+    get studentNumber() {return $('.table').$('<tbody>').$$('tr')[3].$$(`td`)[1]}
+    get studentbirth() {return $('.table').$('<tbody>').$$('tr')[4].$$(`td`)[1]}
+    get studentSubject() {return $('.table').$('<tbody>').$$('tr')[5].$$(`td`)[1]}
+    get studentHobbie() {return $('.table').$('<tbody>').$$('tr')[6].$$(`td`)[1]}
+    get studentImage() {return $('.table').$('<tbody>').$$('tr')[7].$$(`td`)[1]}
+    get studentAddress() {return $('.table').$('<tbody>').$$('tr')[8].$$(`td`)[1]}
+    get studentStateCity() {return $('.table').$('<tbody>').$$('tr')[9].$$(`td`)[1]}
     get closeBtn () {return $('#closeLargeModal')}
 
     fillGender(value) {
@@ -86,10 +86,10 @@ class practiceForm {
     }
 
     uploadFile() {
-        const filePath = '/home/dafa/wdio-playground/features/foto/WhatsApp Image 2021-07-15 at 10.37.03.jpeg'
+        const filePath = '/home/dafa/wdio-playground/features/foto/ktp.jpg'
         const remoteFilePath = browser.uploadFile(filePath)
         this.uploadPic.setValue(remoteFilePath);
-        datasets.pathImage = filePath
+        datasets.pathImage = filePath.split(/[\\\/]/).pop();
     }
 
     chooseStateCity(state,city) {

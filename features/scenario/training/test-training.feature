@@ -1,7 +1,7 @@
 Feature: testing Training Feature
 
 @testing1
-Scenario: Go to certain website
+Scenario: Fill all practice form
     Given Go to website "https://demoqa.com/automation-practice-form"
     And User Input first name "Dafa"
     And User input last name "Fadhil"

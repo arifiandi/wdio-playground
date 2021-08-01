@@ -5,7 +5,6 @@ const { expect } = require('chai')
 const uploadPage = require('/home/ariny/wdio-playground/features/pageobjects/upload-page.js')
 const formPage = require('/home/ariny/wdio-playground/features/pageobjects/form-page.js')
 const uploadPicture = require('/home/ariny/wdio-playground/features/pageobjects/upload-picture.js')
-const displayModal = require('/home/ariny/wdio-playground/features/pageobjects/display-page.js')
 
 Given('go to {string}', function (web) {
   browser.url(web)
@@ -55,7 +54,8 @@ When('fill last name', function () {
 });
 
 When('select gender', function () {
-  formPage.gender.click({ x: 30 })
+  const gender = $('#gender-radio-2')
+  gender.click({ x: 30 })
 });
 
 When('fill mobile', function () {
@@ -64,46 +64,55 @@ When('fill mobile', function () {
 
 When('select DOB', function () {
   formPage.dateOfBirthField.click()
+
+  // select year
   formPage.yearOfBirth.click()
-  formPage.year.click()
+  const year = $('option[value="1994"]')
+  year.click()
+  
+  // select month
   formPage.monthOfBirth.click()
-  formPage.month.click()
+  const month = $('option[value="11"]')
+  month.click()
   formPage.monthOfBirth.click()
-  formPage.dateOfBirth.click()
+
+  // select specific date
+  const date = $('div[aria-label="Choose Monday, December 26th, 1994"]')
+  date.click()
 });
 
 When('fill subjects', function () {
   formPage.subjects.setValue('Computer Science')
-  formPage.selectedSubjects.click()
+  const selectedSubjects = $('#react-select-2-option-0')
+  selectedSubjects.click()
 });
 
 When('select hobbies', function () {
-  formPage.hobbies.click({ x: 30 })
+  const hobbies = $('#hobbies-checkbox-3')
+  hobbies.click({ x: 30 })
 });
 
 When('upload picture', function() {
   uploadPicture.uploadFile()
 })
 
-When('fill current address', function () {
-  formPage.currentAddress.setValue('Perumahan Bukit Cirendeu')
-});
-
 When('select state', function () {
   formPage.state.scrollIntoView()
   formPage.state.click()
-  formPage.selectedState.click()
+  const selectedState = $('#react-select-3-option-0')
+  selectedState.click()
 });
 
 When('select city', function () {
   formPage.city.click()
-  formPage.selectedCity.click()
+  const selectedCity = $('#react-select-4-option-0')
+  selectedCity.click()
 });
 
 Then('form submitted', function() {
-  expect(displayModal.display).to.exist
-  expect(displayModal.title.getText()).to.include('Thanks for submitting the form')
-  expect(displayModal.tableData).to.exist
-  displayModal.closeModal.click()
+  expect(formPage.display).to.exist
+  expect(formPage.title.getText()).to.include('Thanks for submitting the form')
+  expect(formPage.tableData).to.exist
+  formPage.closeModal.click()
   driver.pause(2000)
 })

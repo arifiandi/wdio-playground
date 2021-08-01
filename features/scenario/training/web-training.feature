@@ -31,7 +31,7 @@ Scenario: Student Registration form
     And fill subjects
     And select hobbies
     And upload picture
-    And fill current address
+    And set current address
     And select state
     And select city
     And click submit button

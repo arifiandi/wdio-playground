@@ -1,6 +1,6 @@
 class uploadPage {
 
-    get uploadDocuments() {return $('#uploadFile')}
+    get uploadDocuments() {return $('#uploadPicture')}
     get uploadedFilePath() {return $('#uploadedFilePath')}
 
     uploadFile(){

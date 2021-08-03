@@ -11,6 +11,8 @@ class practiceForm {
     get currentAddressField() { return $('#currentAddress') }
     get stateList() { return $('#state') }
     get cityList() { return $('#city') }
+    get submitButton() { return $('#submit')}
+    get largeModalButton () {return $('#closeLargeModal')}
 
     enterSubject() {
             this.subjectInput.waitForDisplayed()

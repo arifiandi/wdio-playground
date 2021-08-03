@@ -6,7 +6,6 @@ class uploadPicture {
         const remoteFilePath = browser.uploadFile(filePath)
 
         this.uploadImage.setValue(remoteFilePath)
-        // this.uploadImage.scrollIntoView()
     }
 }
 

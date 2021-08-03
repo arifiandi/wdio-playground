@@ -29,11 +29,9 @@ Then('enter mobile number {string}', function (phoneNumber) {
     practiceForm.mobileNumberField.setValue(phoneNumber)
 });
 
-
 Then('select date of birth', function () {
     // Write code here that turns the phrase above into concrete actions
     datePicker.selectDate()
-    driver.pause(5000)
 });
 
 Then('select subject {string}', function (subjectSelection) {
@@ -41,7 +39,6 @@ Then('select subject {string}', function (subjectSelection) {
     practiceForm.subjectInput.setValue(subjectSelection)
     practiceForm.enterSubject()
 });
-
 
 Then('select hobbies', function () {
     // Write code here that turns the phrase above into concrete actions
@@ -63,3 +60,13 @@ Then('select state and city', function () {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.selectStateAndCity()
 });
+
+Then('click submit button in form', function () {
+    // Write code here that turns the phrase above into concrete actions
+    practiceForm.submitButton.click()
+});
+
+// Then('click close button when finished', function () {
+//     // Write code here that turns the phrase above into concrete actions
+//     practiceForm.largeModalButton.click()
+//   });

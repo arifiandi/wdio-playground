@@ -9,11 +9,11 @@ Scenario: Fill all practice form
     And User choose gender "male"
     And User input mobile number "1234567890"
     And User fill date of birth "30 maret 1991"
-    And User fill subject "biology"
+    And User fill subject "science"
     And User choose hobbie "sport"
     And User upload picture
     And User fill address "Jalan Sudirman Raya"
-    And User choose "ncr" and "delhi"
+    And User choose state and city "ncr" and "delhi"
     And User click submit button
     Then Checking the value of table
     

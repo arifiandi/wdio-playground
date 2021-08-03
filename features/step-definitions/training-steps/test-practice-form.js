@@ -77,7 +77,7 @@ When ('User fill address {string}', function(value) {
     datasets.address = practiceForm.address.getValue();
 })
 
-When ('User choose {string} and {string}', function(value,param) {
+When ('User choose state and city {string} and {string}', function(value,param) {
     practiceForm.submitBtn.scrollIntoView();
     expect(practiceForm.selectCity.isClickable()).to.be.false
     practiceForm.selectState.click()
@@ -92,16 +92,16 @@ When ('User click submit button', function() {
 
 When ('Checking the value of table', function() {
     practiceForm.headerTable.waitForDisplayed();
-    expect(practiceForm.headerTable.getText()).to.include('Thanks for submitting the form')
-    expect(practiceForm.studentName.getText()).to.include(`${datasets.firstName} ${datasets.lastName}`)
-    expect(practiceForm.studentEmail.getText()).to.include(`${datasets.email}`)
-    expect(practiceForm.studentGenders.getText()).to.include(`${datasets.gender}`)
-    expect(practiceForm.studentNumber.getText()).to.include(`${datasets.mobileNumber}`)
-    expect(practiceForm.studentbirth.getText()).to.include(`${datasets.dateBirth}`)
-    expect(practiceForm.studentSubject.getText()).to.include(`${datasets.subjects}`)
-    expect(practiceForm.studentHobbie.getText()).to.include(`${datasets.hobbies}`)
-    expect(practiceForm.studentImage.getText()).to.include(`${datasets.pathImage}`)
-    expect(practiceForm.studentAddress.getText()).to.include(`${datasets.address}`)
-    expect(practiceForm.studentStateCity.getText()).to.include(`${datasets.state} ${datasets.city}`)
+    expect(practiceForm.headerTable.getText()).to.equal('Thanks for submitting the form')
+    expect(practiceForm.studentName.getText()).to.equal(`${datasets.firstName} ${datasets.lastName}`)
+    expect(practiceForm.studentEmail.getText()).to.equal(`${datasets.email}`)
+    expect(practiceForm.studentGenders.getText()).to.equal(`${datasets.gender}`)
+    expect(practiceForm.studentNumber.getText()).to.equal(`${datasets.mobileNumber}`)
+    expect(practiceForm.studentbirth.getText()).to.equal(`${datasets.dateBirth}`)
+    expect(practiceForm.studentSubject.getText()).to.equal(`${datasets.subjects}`)
+    expect(practiceForm.studentHobbie.getText()).to.equal(`${datasets.hobbies}`)
+    expect(practiceForm.studentImage.getText()).to.equal(`${datasets.pathImage}`)
+    expect(practiceForm.studentAddress.getText()).to.equal(`${datasets.address}`)
+    expect(practiceForm.studentStateCity.getText()).to.equal(`${datasets.state} ${datasets.city}`)
     expect(practiceForm.closeBtn).to.exist
 })

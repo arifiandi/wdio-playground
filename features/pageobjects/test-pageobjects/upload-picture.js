@@ -1,4 +1,4 @@
-const { datasets } = require("../../helpers/student")
+const { students } = require("../../helpers/student")
 
 class uploadPicture {
     get uploadImage () {return $('#uploadPicture')}
@@ -8,7 +8,7 @@ class uploadPicture {
         const remoteFilePath = browser.uploadFile(filePath)
 
         this.uploadImage.setValue(remoteFilePath)
-        datasets.picture = filePath
+        students.picture = filePath
     }
 }
 

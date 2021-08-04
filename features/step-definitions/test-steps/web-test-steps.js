@@ -1,8 +1,11 @@
 const { Given, Then } = require('@cucumber/cucumber');
 const { expect, assert } = require('chai');
-const { datasets } = require('../../helpers/student');
+const { get } = require('superagent');
+const { stateAndCity } = require('../../helpers/state-city');
+const { students } = require('../../helpers/student');
 const datePicker = require('../../pageobjects/test-pageobjects/date-picker');
 const practiceForm = require('../../pageobjects/test-pageobjects/practice-form');
+const stateCity = require('../../pageobjects/test-pageobjects/state-city');
 const submitModal = require('../../pageobjects/test-pageobjects/submit-modal');
 const uploadPicture = require('../../pageobjects/test-pageobjects/upload-picture');
 
@@ -14,40 +17,40 @@ Given('go to (.*?)', function (web) {
 
 Then('fill first name {string} and last name {string}', function (firstName, lastName) {
     // Write code here that turns the phrase above into concrete actions
-    
+
     practiceForm.firstNameField.setValue(firstName)
     practiceForm.lastNameField.setValue(lastName)
 
-    datasets.firstName = firstName
-    datasets.lastName = lastName
+    students.firstName = firstName
+    students.lastName = lastName
 });
 
 Then('fill email {string}', function (enterEmail) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.userEmailField.setValue(enterEmail)
 
-    datasets.email = enterEmail
+    students.email = enterEmail
 });
 
 Then('select gender {string}', function (gender) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.selectGender(gender)
 
-    datasets.gender = gender
+    students.gender = gender
 });
 
 Then('enter mobile number {string}', function (phoneNumber) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.mobileNumberField.setValue(phoneNumber)
 
-    datasets.mobileNumber = phoneNumber
+    students.mobileNumber = phoneNumber
 });
 
 Then('select date of birth {string}', function (dateOfBirth) {
     // Write code here that turns the phrase above into concrete actions
     datePicker.selectDate(dateOfBirth)
 
-    datasets.dateOfBirth = dateOfBirth
+    students.dateOfBirth = dateOfBirth
 });
 
 Then('select subject {string}', function (subject) {
@@ -55,14 +58,14 @@ Then('select subject {string}', function (subject) {
     practiceForm.subjectInput.setValue(subject)
     practiceForm.enterSubject()
 
-    datasets.subjects = subject
+    students.subjects = subject
 });
 
 Then('select hobbies {string}', function (hobby) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.selectHobbies(hobby)
 
-    datasets.hobbies = hobby
+    students.hobbies = hobby
 });
 
 Then('upload picture', function () {
@@ -74,12 +77,12 @@ Then('fill current address {string}', function (currentAddress) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.currentAddressField.setValue(currentAddress)
 
-    datasets.currentAddress = currentAddress
+    students.currentAddress = currentAddress
 });
 
-Then('select state and city', function () {
+Then('select state {string} and city {string}', function (state, city) {
     // Write code here that turns the phrase above into concrete actions
-    practiceForm.selectStateAndCity()
+    stateCity.randomState(state, city)
 });
 
 Then('click submit button in form', function () {
@@ -87,19 +90,19 @@ Then('click submit button in form', function () {
     practiceForm.submitButton.click()
 });
 
-Then('validate form submitted', function () {
+Then('validate submitted form', function () {
     // Write code here that turns the phrase above into concrete actions
     expect(submitModal.modalContent).to.exist
     expect(submitModal.modalText.getText()).to.equal("Thanks for submitting the form")
     expect(submitModal.modalTable.getText()).to.exist
-    expect(submitModal.studentName.getText()).to.include(datasets.firstName)
-    expect(submitModal.studentEmail.getText()).to.include(datasets.email)
-    expect(submitModal.studentGender.getText()).to.include(datasets.gender)
-    expect(submitModal.studentMobileNumber.getText()).to.include(datasets.mobileNumber)
-    expect(submitModal.studentSubjects.getText()).to.include(datasets.subjects)
-    expect(submitModal.studentHobbies.getText()).to.include(datasets.hobbies)
-    expect(submitModal.studentPicture.getText()).to.include(datasets.picture)
-    expect(submitModal.studentAddress.getText()).to.include(datasets.currentAddress)
-    expect(submitModal.studentStateAndCity.getText()).to.include("NCR Delhi")
+    expect(submitModal.studentName.getText()).to.include(students.firstName + ' ' + students.lastName)
+    expect(submitModal.studentEmail.getText()).to.include(students.email)
+    expect(submitModal.studentGender.getText()).to.include(students.gender)
+    expect(submitModal.studentMobileNumber.getText()).to.include(students.mobileNumber)
+    expect(submitModal.studentSubjects.getText()).to.include(students.subjects)
+    expect(submitModal.studentHobbies.getText()).to.include(students.hobbies)
+    expect(submitModal.studentPicture.getText()).to.include(students.picture)
+    expect(submitModal.studentAddress.getText()).to.include(students.currentAddress)
+    expect(submitModal.studentStateAndCity.getText()).to.include(stateAndCity.state + ' ' + stateAndCity.city)
     expect(submitModal.closeModalButton).to.exist
 });

@@ -1,4 +1,4 @@
-exports.datasets = {
+exports.students = {
     firstName: null,
     lastName: null,
     email: null,
@@ -8,6 +8,5 @@ exports.datasets = {
     subjects: null,
     hobbies: null,
     picture: null,
-    currentAddress: null,
-    stateAndCity: null
+    currentAddress: null
 }

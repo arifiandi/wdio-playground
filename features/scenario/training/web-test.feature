@@ -12,6 +12,6 @@ Feature: Web Automation Test
         Then select hobbies "Sports"
         Then upload picture
         Then fill current address "Plaza Bank Index"
-        Then select state and city
+        Then select state "NCR" and city "Delhi"
         Then click submit button in form
-        And validate form submitted
+        And validate submitted form

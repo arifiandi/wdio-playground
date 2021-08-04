@@ -1,6 +1,5 @@
 const { Given, Then } = require('@cucumber/cucumber');
 const { expect, assert } = require('chai');
-const { get } = require('superagent');
 const { stateAndCity } = require('../../helpers/state-city');
 const { students } = require('../../helpers/student');
 const datePicker = require('../../pageobjects/test-pageobjects/date-picker');

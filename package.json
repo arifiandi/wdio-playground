@@ -30,7 +30,7 @@
     "app-module-path": "~2.2.0",
     "bluebird": "^3.7.2",
     "chai": "^4.3.4",
-    "chromedriver": "^91.0.1",
+    "chromedriver": "^92.0.1",
     "dotenv": "^8.2.0",
     "superagent": "^6.1.0"
   }

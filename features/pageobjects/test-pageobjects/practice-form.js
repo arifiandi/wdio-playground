@@ -12,7 +12,6 @@ class practiceForm {
     get stateList() { return $('#state') }
     get cityList() { return $('#city') }
     get submitButton() { return $('#submit')}
-    get largeModalButton () {return $('#closeLargeModal')}
 
     enterSubject() {
             this.subjectInput.waitForDisplayed()
@@ -32,11 +31,11 @@ class practiceForm {
 
     selectStateAndCity() {
             this.stateList.click()
-            browser.keys('ArrowDown')
+        //     browser.keys('ArrowDown')
             browser.keys('Enter')
             this.cityList.waitForClickable()
             this.cityList.click()
-            browser.keys('ArrowDown')
+        //     browser.keys('ArrowDown')
             browser.keys('Enter')
     }
 }

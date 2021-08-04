@@ -31,7 +31,7 @@ Then('select gender', function () {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.genderRadioButton.click()
 
-    // expect(practiceForm.genderRadioButton.isSelected()).equals(true)
+    expect(practiceForm.genderRadioButton.isSelected()).equals(true)
 });
 
 Then('enter mobile number {string}', function (phoneNumber) {

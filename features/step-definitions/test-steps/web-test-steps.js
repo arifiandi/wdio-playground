@@ -8,14 +8,16 @@ const uploadPicture = require('../../pageobjects/test-pageobjects/upload-picture
 
 Given('go to (.*?)', function (web) {
     // Write code here that turns the phrase above into concrete actions
-    browser.url(web)
+    browser.url(web).waitForDisplayed()
     expect(browser.getUrl()).equals("https://demoqa.com/automation-practice-form")
 });
 
 Then('fill first name {string} and last name {string}', function (firstName, lastName) {
     // Write code here that turns the phrase above into concrete actions
+    
     practiceForm.firstNameField.setValue(firstName)
     practiceForm.lastNameField.setValue(lastName)
+
     datasets.firstName = firstName
     datasets.lastName = lastName
 });
@@ -23,24 +25,28 @@ Then('fill first name {string} and last name {string}', function (firstName, las
 Then('fill email {string}', function (enterEmail) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.userEmailField.setValue(enterEmail)
+
     datasets.email = enterEmail
 });
 
 Then('select gender {string}', function (gender) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.selectGender(gender)
+
     datasets.gender = gender
 });
 
 Then('enter mobile number {string}', function (phoneNumber) {
     // Write code here that turns the phrase above into concrete actions
     practiceForm.mobileNumberField.setValue(phoneNumber)
-    datasets.phoneNumber = phoneNumber
+
+    datasets.mobileNumber = phoneNumber
 });
 
 Then('select date of birth {string}', function (dateOfBirth) {
     // Write code here that turns the phrase above into concrete actions
     datePicker.selectDate(dateOfBirth)
+
     datasets.dateOfBirth = dateOfBirth
 });
 
@@ -92,7 +98,8 @@ Then('validate form submitted', function () {
     expect(submitModal.studentMobileNumber.getText()).to.include(datasets.mobileNumber)
     expect(submitModal.studentSubjects.getText()).to.include(datasets.subjects)
     expect(submitModal.studentHobbies.getText()).to.include(datasets.hobbies)
-    expect(submitModal.studentPicture.getText()).to.include("sampleFile.jpeg")
+    expect(submitModal.studentPicture.getText()).to.include(datasets.picture)
     expect(submitModal.studentAddress.getText()).to.include(datasets.currentAddress)
     expect(submitModal.studentStateAndCity.getText()).to.include("NCR Delhi")
+    expect(submitModal.closeModalButton).to.exist
 });

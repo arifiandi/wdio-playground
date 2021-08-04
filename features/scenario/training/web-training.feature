@@ -22,17 +22,16 @@ Scenario: Upload document
 @test_training
 Scenario: Student Registration form
     Given go to "https://demoqa.com/automation-practice-form"
-    When fill first name
-    And fill last name
-    And fill email
-    And select gender
-    And fill mobile
-    And select DOB
-    And fill subjects
-    And select hobbies
-    And upload picture
-    And set current address
-    And select state
-    And select city
+    When fill first name "Ariny Haq"
+    And fill last name "Hidayati"
+    And fill email "ariny@mailinator.com"
+    And select gender "Female"
+    And fill mobile "0812222222"
+    And select DOB "26 December,1994"
+    And fill subjects "Computer Science"
+    And select hobbies "Music"
+    And upload picture "image.png"
+    And set current address "Jakarta Selatan"
+    And select state "Rajasthan" and city "Jaipur"
     And click submit button
     Then form submitted

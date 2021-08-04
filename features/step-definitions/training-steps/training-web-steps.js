@@ -2,9 +2,9 @@
 
 const { Given, Then, When } = require('@cucumber/cucumber')
 const { expect } = require('chai')
+const { datasets } = require('/home/ariny/wdio-playground/features/helpers/datasets');
 const uploadPage = require('/home/ariny/wdio-playground/features/pageobjects/upload-page.js')
 const formPage = require('/home/ariny/wdio-playground/features/pageobjects/form-page.js')
-const uploadPicture = require('/home/ariny/wdio-playground/features/pageobjects/upload-picture.js')
 
 Given('go to {string}', function (web) {
   browser.url(web)
@@ -15,12 +15,14 @@ When('fill username', function () {
   formPage.fullName.setValue('Ariny Haq Hidayati')
 });
 
-When('fill email', function () {
-  formPage.emailField.setValue('ariny@mailinator.com')
+When('fill email {string}', function (emailField) {
+  formPage.emailField.setValue(emailField)
+  datasets.emailField = emailField
 });
 
-When('set current address', function () {
-  formPage.currentAddress.setValue('Jakarta Selatan')
+When('set current address {string}', function (currentAddress) {
+  formPage.currentAddress.setValue(currentAddress)
+  datasets.currentAddress = currentAddress
 });
 
 When('set permanent address', function () {
@@ -45,74 +47,72 @@ Then('file uploaded', function() {
 })
 
 // Registration Form
-When('fill first name', function () {
-  formPage.firstName.setValue('Ariny Haq')
+When('fill first name {string}', function (firstName) {
+  formPage.firstName.setValue(firstName)
+  datasets.firstName = firstName
 });
 
-When('fill last name', function () {
-  formPage.lastName.setValue('Hidayati')
+When('fill last name {string}', function (lastName) {
+  formPage.lastName.setValue(lastName)
+  datasets.lastName = lastName
 });
 
-When('select gender', function () {
-  const gender = $('#gender-radio-2')
-  gender.click({ x: 30 })
+When('select gender {string}', function (gender) {
+  formPage.selectGender(gender)
+  datasets.gender = gender
 });
 
-When('fill mobile', function () {
-  formPage.mobile.setValue('0812000000')
+When('fill mobile {string}', function (mobile) {
+  formPage.mobile.setValue(mobile)
+  datasets.mobile = mobile
 });
 
-When('select DOB', function () {
+When('select DOB {string}', function (selectedDOB) {
   formPage.dateOfBirthField.click()
-
-  // select year
-  formPage.yearOfBirth.click()
-  const year = $('option[value="1994"]')
-  year.click()
-  
-  // select month
-  formPage.monthOfBirth.click()
-  const month = $('option[value="11"]')
-  month.click()
-  formPage.monthOfBirth.click()
-
-  // select specific date
-  const date = $('div[aria-label="Choose Monday, December 26th, 1994"]')
-  date.click()
+  browser.keys(['Control','a'])
+  formPage.dateOfBirthField.addValue(selectedDOB)
+  browser.keys(['Enter'])
+  datasets.dateOfBirthField = selectedDOB
 });
 
-When('fill subjects', function () {
-  formPage.subjects.setValue('Computer Science')
+When('fill subjects {string}', function (subjects) {
+  formPage.subjects.setValue(subjects)
+  datasets.subjects = subjects
   const selectedSubjects = $('#react-select-2-option-0')
   selectedSubjects.click()
 });
 
-When('select hobbies', function () {
-  const hobbies = $('#hobbies-checkbox-3')
-  hobbies.click({ x: 30 })
+When('select hobbies {string}', function (hobbies) {
+  formPage.selectHobbies(hobbies)
+  datasets.hobbies = hobbies
 });
 
-When('upload picture', function() {
-  uploadPicture.uploadFile()
+When('upload picture {string}', function(filePath) {
+  formPage.uploadFile(filePath)
+  datasets.filePath = filePath
 })
 
-When('select state', function () {
+When('select state {string} and city {string}', function (state,city) {
   formPage.state.scrollIntoView()
   formPage.state.click()
-  const selectedState = $('#react-select-3-option-0')
-  selectedState.click()
-});
-
-When('select city', function () {
-  formPage.city.click()
-  const selectedCity = $('#react-select-4-option-0')
-  selectedCity.click()
+  formPage.selectStateAndCity(state,city)
+  datasets.state = state
 });
 
 Then('form submitted', function() {
   expect(formPage.display).to.exist
   expect(formPage.title.getText()).to.include('Thanks for submitting the form')
   expect(formPage.tableData).to.exist
+  expect(formPage.studentNameValue.getText()).to.include(datasets.firstName + ' ' + datasets.lastName)
+  expect(formPage.studentEmailValue.getText()).to.include(datasets.emailField)
+  expect(formPage.genderValue.getText()).to.include(datasets.gender)
+  expect(formPage.mobileValue.getText()).to.include(datasets.mobile)
+  expect(formPage.dateOfBirthValue.getText()).to.include(datasets.dateOfBirthField)
+  expect(formPage.subjectsValue.getText()).to.include(datasets.subjects)
+  expect(formPage.hobbiesValue.getText()).to.include(datasets.hobbies)
+  expect(formPage.pictureValue.getText()).to.include(datasets.filePath)
+  expect(formPage.addressValue.getText()).to.include(datasets.currentAddress)
+  expect(formPage.stateAndCityValue.getText()).to.include(datasets.state + ' ' + datasets.city)
   formPage.closeModal.click()
   driver.pause(2000)
 })

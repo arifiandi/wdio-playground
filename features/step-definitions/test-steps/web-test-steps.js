@@ -41,6 +41,7 @@ Then('enter mobile number {string}', function (phoneNumber) {
 Then('select date of birth {string}', function (dateOfBirth) {
     // Write code here that turns the phrase above into concrete actions
     datePicker.selectDate(dateOfBirth)
+    datasets.dateOfBirth = dateOfBirth
 });
 
 Then('select subject {string}', function (subject) {

@@ -11,13 +11,8 @@ class datePicker {
         this.birthMonth.selectByAttribute('value', '8')
         this.birthYear.waitForClickable()
         this.birthYear.selectByAttribute('value', '2000')
-
-        // this.birthMonth.selectByVisibleText('January')
-        // this.birthYear.waitForClickable()
-        // this.birthYear.selectByVisibleText('2000')
         this.birthDate.waitForClickable()
         this.birthDate.click()
-        // driver.pause(5000)
     }
 }
 

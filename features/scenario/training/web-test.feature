@@ -5,11 +5,11 @@ Feature: Web Automation Test
         Given go to "https://demoqa.com/automation-practice-form"
         Then fill first name "Joycelind" and last name "Chow"
         Then fill email "joy@test.com"
-        Then select gender
+        Then select gender "Female"
         Then enter mobile number "6212345678"
         Then select date of birth
         Then select subject "Computer Science"
-        Then select hobbies
+        Then select hobbies "Sports"
         Then upload picture
         Then fill current address "Plaza Bank Index"
         Then select state and city
@@ -20,3 +20,9 @@ Feature: Web Automation Test
     Scenario: Practice Form Page
         Given go to "https://demoqa.com/automation-practice-form"
         Then fill first name "Joycelind" and last name "Chow"
+        Then fill email "joy@test.com"
+        Then select gender "Female"
+        Then enter mobile number "6212345678"
+        Then select subject "Computer Science"
+        Then select hobbies "Sports"
+        Then fill current address "Plaza Bank Index"
